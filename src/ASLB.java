@@ -1,4 +1,3 @@
-package main;
 
 import java.awt.List;
 import java.io.BufferedReader;
