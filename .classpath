@@ -2,5 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jclec4-base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jclec4-tutorial"/>
+	<classpathentry kind="lib" path="C:/Users/maria/Desktop/IngenieriaDelSoftware/jclec4-base/libs/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/maria/Desktop/IngenieriaDelSoftware/jclec4-base/libs/commons-configuration-1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/maria/Desktop/IngenieriaDelSoftware/jclec4-base/libs/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/maria/Desktop/IngenieriaDelSoftware/jclec4-base/libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/maria/Desktop/IngenieriaDelSoftware/jclec4-base/libs/junit-3.8.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
