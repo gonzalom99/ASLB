@@ -1,16 +1,8 @@
 
-import java.awt.List;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.Random;
 
 import net.sf.jclec.IConfigure;
@@ -19,12 +11,12 @@ import net.sf.jclec.IIndividual;
 import net.sf.jclec.base.AbstractEvaluator;
 import net.sf.jclec.fitness.SimpleValueFitness;
 import net.sf.jclec.fitness.ValueFitnessComparator;
-
+import net.sf.jclec.orderarray.MatrizIndividual;
+import net.sf.jclec.orderarray.OrderArrayIndividual;
 import net.sf.jclec.selector.TournamentSelector;
 
-import org.apache.commons.configuration.Configuration;
+//import org.apache.commons.configuration.Configuration;
 
-import matrizindividual.MatrizIndividual;
 
 
 /**
@@ -272,26 +264,33 @@ public class ASLB {
 		//imprimir soluciones
 		for(int i=0;i<soluciones.size();i++) {
 			int [][] solucion_actual=soluciones.get(i);
-			System.out.println("----------------SOLUCION " +i+"------------");
+			System.out.println("----------------SOLUCION " +(i+1)+"------------");
 			impr(solucion_actual);
 			System.out.println();
 			System.out.println("El valor mas alto de estaciones es:"+evaluate(solucion_actual, m_adyacencia));
 			System.out.println();
 		}
 
-		ArrayList<IIndividual> lista = new ArrayList<IIndividual>();
+		List<IIndividual> lista = new ArrayList<IIndividual>();
 		for(int i=0; i<soluciones.size(); i++) {
-		IIndividual aux = new MatrizIndividual(soluciones.get(1));
+		IIndividual aux = new MatrizIndividual(soluciones.get(i));
 		lista.add(aux);
 		}
-		System.out.print("Tamaño lista Individuos deberia ser 4 (soluciones generadas): " + lista.size());
-
+		System.out.println("Tamaño lista de individuos: " + lista.size());
+		
+		for(int i=0; i<lista.size(); i++) {
+			System.out.println("INDIVIDUO "+ (i+1) + " :"+ lista.get(i));
+			}
 		
 		//seleccion por torneo
 		TournamentSelector Torneo = new TournamentSelector();
-		Torneo.setTournamentSize(2);
-	//	System.out.print("Solucion escogida?????????????" + Torneo.select(lista));
-
+		//Torneo.setTournamentSize(2);
+		
+		List<IIndividual> escogidos = new ArrayList<IIndividual>();
+		
+	//	escogidos = Torneo.select(lista);
+	//	System.out.print("Tamaño escogidos: " + escogidos.size());
+	//	System.out.print(Torneo.select(lista));
 	}
 
 }
