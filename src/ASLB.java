@@ -1,17 +1,18 @@
 
 import java.util.List;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
 
+import matrizindividual.MatrizIndividual;
 import net.sf.jclec.IConfigure;
 import net.sf.jclec.IFitness;
 import net.sf.jclec.IIndividual;
 import net.sf.jclec.base.AbstractEvaluator;
 import net.sf.jclec.fitness.SimpleValueFitness;
 import net.sf.jclec.fitness.ValueFitnessComparator;
-import net.sf.jclec.orderarray.MatrizIndividual;
 import net.sf.jclec.orderarray.OrderArrayIndividual;
 import net.sf.jclec.selector.TournamentSelector;
 
@@ -28,7 +29,24 @@ import net.sf.jclec.selector.TournamentSelector;
  * 
  */
 public class ASLB {
-
+	
+	public ASLB(){
+		super();
+	}
+	/** Is this evaluator being used to maximize a function?
+	* @return true if evaluator is used to maximize function, false
+	otherwise. */
+	public boolean isMaximize()
+	{
+		return maximize;
+	}
+	
+	/** Set the maximize flag.
+	* @param maximize Actual maximize flag. */
+	public void setMaximize(boolean maximize)
+	{
+		this.maximize = maximize;
+	}
 	//n numero de estaciones
 	static int n=3;
 
@@ -46,7 +64,13 @@ public class ASLB {
 	static MatrizAdyacencia m_adyacencia = new MatrizAdyacencia(10);
 
 	//Comparador de fitness
-	private Comparator<IFitness> COMPARATOR;
+		private Comparator<IFitness> COMPARATOR;
+		
+		private BufferedReader br;
+		
+	/** Maximize of minimize functions? */
+		
+		protected boolean maximize = false;
 
 	public static int [][] solucionAleatoria(){
 		ArrayList<Integer> operaciones = new ArrayList<Integer>();
@@ -230,6 +254,20 @@ public class ASLB {
 			}
 		}
 		return estacion;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	
+	public Comparator<IFitness> getComparator()
+	{
+		// Set fitness comparator (if necessary)
+		if (COMPARATOR == null)
+			COMPARATOR = new ValueFitnessComparator(!maximize);
+	
+		// Return comparator
+		return COMPARATOR;
 	}
 
 	public static void main(String[] args) {
