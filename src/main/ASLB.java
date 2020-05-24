@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
-
 import matrizindividual.MatrizAdyacencia;
 import matrizindividual.MatrizIndividual;
 import net.sf.jclec.IConfigure;
@@ -16,12 +15,7 @@ import net.sf.jclec.fitness.SimpleValueFitness;
 import net.sf.jclec.fitness.ValueFitnessComparator;
 import net.sf.jclec.selector.TournamentSelector;
 
-
-
-
-
-
-
+ 
 /**
  * ASLB optimization problem
  * 
@@ -317,7 +311,7 @@ public class ASLB {
 		Torneo.setTournamentSize(2);
 
 		List<IIndividual> escogidos = new ArrayList<IIndividual>();
-
+		
 		escogidos = Torneo.select(lista,1,false);
 		//System.out.println("Tamaño escogidos: " + escogidos.size());
 		//	System.out.print(Torneo.select(lista));
