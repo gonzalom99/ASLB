@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
+
+import matrizindividual.MatrizAdyacencia;
 import net.sf.jclec.IConfigure;
 import net.sf.jclec.IFitness;
 import net.sf.jclec.IIndividual;
@@ -14,8 +16,6 @@ import net.sf.jclec.fitness.ValueFitnessComparator;
 import net.sf.jclec.orderarray.MatrizIndividual;
 import net.sf.jclec.orderarray.OrderArrayIndividual;
 import net.sf.jclec.selector.TournamentSelector;
-
-import matrizindividual.MatrizAdyacencia;
 
 //import org.apache.commons.configuration.Configuration;
 
@@ -42,8 +42,8 @@ public class ASLB {
 
 	//matriz asociada a cada individuo A m*n
 	int A[][] = new int [m][n];	
-	
-	
+
+
 	//matriz de adyacencia
 	static MatrizAdyacencia m_adyacencia = new MatrizAdyacencia(10);
 
@@ -213,13 +213,13 @@ public class ASLB {
 
 		}
 		if(orden>0) {
-		ind.setFitness(new SimpleValueFitness(fitness));
+			ind.setFitness(new SimpleValueFitness(fitness));
 		}
 		else {
 			ind.setFitness(new SimpleValueFitness(orden));
 		}
 		//System.out.println(orden);
-		
+
 	}
 
 
@@ -234,6 +234,29 @@ public class ASLB {
 		return estacion;
 	}
 
+	
+	protected boolean maximize = false;
+	public boolean isMaximize()
+	{
+		return maximize;
+	}
+	
+	/** Set the maximize flag.
+	* @param maximize Actual maximize flag. */
+	public void setMaximize(boolean maximize)
+	{
+		this.maximize = maximize;
+	}
+	public Comparator<IFitness> getComparator()
+	{
+		// Set fitness comparator (if necessary)
+		if (COMPARATOR == null)
+			COMPARATOR = new ValueFitnessComparator(!maximize);
+	
+		// Return comparator
+		return COMPARATOR;
+	}
+	
 	public static void main(String[] args) {
 
 		//generar matriz de adyacencia
@@ -263,36 +286,40 @@ public class ASLB {
 		//crear 4 soluciones aleatorias
 		soluciones=solucionesAleatorias(4);
 
-		//imprimir soluciones
-		for(int i=0;i<soluciones.size();i++) {
-			int [][] solucion_actual=soluciones.get(i);
-			System.out.println("----------------SOLUCION " +(i+1)+"------------");
-			impr(solucion_actual);
-			System.out.println();
-			System.out.println("El valor mas alto de estaciones es:"+evaluate(solucion_actual, m_adyacencia));
-			System.out.println();
-		}
+		//imprimir soluciones evaluadas sin fitness
+				for(int i=0;i<soluciones.size();i++) {
+					int [][] solucion_actual=soluciones.get(i);
+					System.out.println("----------------SOLUCION " +(i+1)+"------------");
+					impr(solucion_actual);
+					System.out.println();
+					System.out.println("El valor mas alto de estaciones es:"+evaluate(solucion_actual, m_adyacencia));
+					System.out.println();
+				}
+
 
 		List<IIndividual> lista = new ArrayList<IIndividual>();
 		for(int i=0; i<soluciones.size(); i++) {
-		IIndividual aux = new MatrizIndividual(soluciones.get(i));
-		lista.add(aux);
+			IIndividual aux = new MatrizIndividual(soluciones.get(i));
+			lista.add(aux);
 		}
 		System.out.println("Tamaño lista de individuos: " + lista.size());
 		
-		for(int i=0; i<lista.size(); i++) {
+		//imprimir soluciones evaluadas con fitness
+		for(int i=0;i<lista.size();i++) {
+			evaluateConIFitness(lista.get(i), m_adyacencia);
 			System.out.println("INDIVIDUO "+ (i+1) + " :"+ lista.get(i));
-			}
-		
+		}
+
+
 		//seleccion por torneo
 		TournamentSelector Torneo = new TournamentSelector();
-		//Torneo.setTournamentSize(2);
-		
+		Torneo.setTournamentSize(2);
+
 		List<IIndividual> escogidos = new ArrayList<IIndividual>();
-		
-	//	escogidos = Torneo.select(lista);
-	//	System.out.print("Tamaño escogidos: " + escogidos.size());
-	//	System.out.print(Torneo.select(lista));
+
+		escogidos = Torneo.select(lista);
+		//System.out.println("Tamaño escogidos: " + escogidos.size());
+		//	System.out.print(Torneo.select(lista));
 	}
 
 }
