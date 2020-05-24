@@ -11,7 +11,6 @@ import net.sf.jclec.IIndividual;
 import net.sf.jclec.base.AbstractEvaluator;
 import net.sf.jclec.fitness.SimpleValueFitness;
 import net.sf.jclec.fitness.ValueFitnessComparator;
-import net.sf.jclec.orderarray.MatrizIndividual;
 import net.sf.jclec.orderarray.OrderArrayIndividual;
 import net.sf.jclec.selector.TournamentSelector;
 
@@ -178,7 +177,7 @@ public class ASLB {
 		return fitness;
 	}
 	public static void evaluateConIFitness(IIndividual ind, MatrizAdyacencia matAdy) {
-		int [][] genotype = ((MatrizIndividual)ind).getGenotype();
+		int [][] genotype = ((matrizindividual.MatrizIndividual)ind).getGenotype();
 		//n estaciones m operaciones
 		//tenemos que recorrer la matriz y sumar las operaciones de las filas
 		//luego nos quedamos con la mas alta
@@ -273,7 +272,7 @@ public class ASLB {
 
 		List<IIndividual> lista = new ArrayList<IIndividual>();
 		for(int i=0; i<soluciones.size(); i++) {
-		IIndividual aux = new MatrizIndividual(soluciones.get(i));
+		IIndividual aux = new matrizindividual.MatrizIndividual(soluciones.get(i));
 		lista.add(aux);
 		}
 		System.out.println("Tamaño lista de individuos: " + lista.size());
