@@ -1,3 +1,4 @@
+package matrizindividual;
 
 
 import net.sf.jclec.IFitness;
@@ -17,6 +18,10 @@ import net.sf.jclec.base.AbstractIndividual;
 
 public class MatrizIndividual extends AbstractIndividual<int[][]>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3072035552876127168L;
 	/**
 	 * Empty constructor
 	 */
