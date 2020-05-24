@@ -1,4 +1,5 @@
-package main;
+package matrizindividual;
+
 
 public class MatrizAdyacencia {
 	private int n;

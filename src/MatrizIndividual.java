@@ -1,4 +1,4 @@
-package matrizindividual;
+
 
 import net.sf.jclec.IFitness;
 import net.sf.jclec.IIndividual;
