@@ -9,5 +9,7 @@
 	<classpathentry kind="lib" path="C:/Users/maria/Desktop/IngenieriaDelSoftware/jclec4-base/libs/commons-lang-2.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/maria/Desktop/IngenieriaDelSoftware/jclec4-base/libs/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/maria/Desktop/IngenieriaDelSoftware/jclec4-base/libs/junit-3.8.2.jar"/>
+	<classpathentry kind="lib" path="/jclec4-base/libs/commons-configuration-1.5.jar"/>
+	<classpathentry kind="lib" path="/jclec4-base/libs/commons-lang-2.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

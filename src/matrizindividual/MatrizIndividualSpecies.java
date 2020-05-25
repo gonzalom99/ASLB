@@ -7,7 +7,6 @@ import net.sf.jclec.util.intset.Interval;
 
 
 import org.apache.commons.configuration.Configuration;
-
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
