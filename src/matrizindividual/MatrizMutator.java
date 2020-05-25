@@ -86,4 +86,21 @@ public abstract class MatrizMutator extends AbstractMutator
 		chrom[point1] = chrom[point2];
 		chrom[point2] = aux;
 	}	
+	//metodo de mutacion adyacente
+	protected final void flip2(int [][] chrom, int point)
+	{		
+		//Cogemos una operacion y la cambiamos de estacion por la misma de la que esta a uno de los lados
+		for(int i=0; i<chrom[point].length; i++) {
+			int aux = chrom[point][i];
+			if(aux!=0) {
+				for (int j=0; j<chrom[point+1].length; j++) {
+					int aux2=chrom[point+1][j];
+					if(aux2!=0) {
+						chrom[point][i]=0;
+						chrom[point][j]=aux;
+					}
+				}
+			}
+		}
+	}	
 }
