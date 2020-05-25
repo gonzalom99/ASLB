@@ -33,7 +33,7 @@ public class MutacionAdyacente extends MatrizMutator{
 		// Creates the individual to mutate
 		IIndividual mutant = parentsBuffer.get(parentsCounter);
 		
-		int cp1 = randgen.choose(0, gl-1);
+		int cp1 = randgen.choose(0, gl-2);
 		
 		
 		System.arraycopy(((AbstractIndividual<int[][]>) mutant).getGenotype(),0, mgenome,0, gl);
