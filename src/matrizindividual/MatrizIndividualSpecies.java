@@ -118,6 +118,35 @@ public class MatrizIndividualSpecies extends AbstractMatrizSpecies implements IC
 			}
 			
 			// Set genotype schema
+			//setGenotypeSchema(genotypeSchema);
+		}
+	}
+	public void configure2(Configuration settings) 
+	{
+		// Genotype lenght: num operaciones x num estaciones
+		//cogemos los valores del .cfg
+		int num_operaciones = settings.getInt("[@genotype-length]", 0);
+		int num_estaciones = settings.getInt("[@num-estaciones]",0);
+		
+		if (num_operaciones != 0 && num_estaciones != 0) {
+			
+			// Genotype schema
+			IIntegerSet[][] genotypeSchema = new IIntegerSet[num_operaciones][num_estaciones];
+			// Set genotype schema components
+			
+			//Esto no se para que se usa asiq lo voy a dejar comentado hasta que lo sepa arreglar
+			/*
+			for (int i=0; i<genotypeLength; i++) {
+				// Set schema component
+				Interval integerSet = new Interval();
+				integerSet.setLeft(0);
+				integerSet.setRight(genotypeLength-1);
+				integerSet.setClosure(Closure.ClosedClosed);
+				genotypeSchema[i] = integerSet;
+				
+			}*/
+			
+			// Set genotype schema
 			setGenotypeSchema(genotypeSchema);
 		}
 	}
