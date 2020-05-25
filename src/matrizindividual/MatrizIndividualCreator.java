@@ -2,7 +2,7 @@ package matrizindividual;
 
 import net.sf.jclec.base.AbstractCreator;
 
-public class MatrizIndividualCreate extends AbstractCreator{
+public class MatrizIndividualCreator extends AbstractCreator{
 
 	@Override
 	protected void prepareCreation() {
