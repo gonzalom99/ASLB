@@ -1,10 +1,17 @@
 package main;
 
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
+
+import org.apache.commons.configuration.Configuration;
+
 import matrizindividual.MatrizAdyacencia;
 import matrizindividual.MatrizIndividual;
 import net.sf.jclec.IConfigure;
@@ -44,6 +51,9 @@ public class ASLB {
 
 	//Comparador de fitness
 	private Comparator<IFitness> COMPARATOR;
+	
+	//Buffered reader
+	private BufferedReader br;
 
 	public static int [][] solucionAleatoria(){
 		ArrayList<Integer> operaciones = new ArrayList<Integer>();
@@ -251,6 +261,65 @@ public class ASLB {
 		// Return comparator
 		return COMPARATOR;
 	}
+	
+	//Este metodo es el que lee de CFG las coordenadas y las distancias
+		public void configure(Configuration settings)
+		{		
+			String fileName = settings.getString("[@file-name]");
+			String line = null;
+			int num_operaciones = settings.getInt("[@num-operaciones]"), i=0;
+			File file = new File (fileName);
+			m_adyacencia = new MatrizAdyacencia(num_operaciones);
+			double duraciones[]= new double [num_operaciones];
+	        double y[]= new double [num_operaciones];
+	        int numeroOp=0;
+	        int numEspacios=0;
+	        String dur=null;
+	        String opAdy=null;
+			
+		    try {
+				FileReader fr = new FileReader(file);
+				br = new BufferedReader(fr);
+				
+		        while(!(line=br.readLine()).contains("NODE_COORD_SECTION"));
+		        while(!(line=br.readLine()).contains("EOF"))
+		        {
+		        	String numop=null;
+		        	for(int k=0; k<line.length(); k++) {
+		        		numop=  numop + line.charAt(k);
+		        		if(line.charAt(k)== ' ' && numEspacios==0) {
+		        			numeroOp= Integer.parseInt(numop);
+		        			numEspacios++;
+		        		}
+		        		if(line.charAt(k)!= ' ' && numEspacios==0) {
+		        			dur=dur + line.charAt(k);
+		        		}
+		        		if(line.charAt(k)== ' ' && numEspacios==1) {
+		        			duraciones[numeroOp-1]=Integer.parseInt(dur);
+		        			numEspacios++;
+		        		}
+		        		if(line.charAt(k)!= ',' && numEspacios == 2) {
+		        			opAdy= opAdy + line.charAt(k);
+		        		}
+		        		if(line.charAt(k)== ',') {
+		        			//Comprobar luego si las filas y las columnas estan bien
+		        			int operacionAdy = Integer.parseInt(opAdy);
+		        			m_adyacencia.agregar(numeroOp-1,operacionAdy);
+		        		}
+		        	}
+		        }
+		    
+		
+		        		
+		        	
+		        	
+		        
+			} catch (IOException e) {
+	            System.out.println(e);
+			}
+		}
+	
+	
 	
 	public static void main(String[] args) {
 
