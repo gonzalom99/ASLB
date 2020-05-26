@@ -23,6 +23,7 @@ public class MatrizIndividual extends AbstractIndividual<int[][]>{
 	 * 
 	 */
 	private static final long serialVersionUID = 3072035552876127168L;
+	private int[] duracion;
 	/**
 	 * Empty constructor
 	 */
@@ -53,6 +54,19 @@ public class MatrizIndividual extends AbstractIndividual<int[][]>{
 	{
 		super(genotype, fitness);
 	}
+	
+	/**
+	 * Constructor that sets individual genotype and fitness
+	 *
+	 * @param genotype Individual genotype
+	 * @param fitness  Individual fitness
+	 */
+
+	public MatrizIndividual(int[][] genotype, int[]duracion)
+	{
+		this.genotype=genotype; 
+		this.setDuracion(duracion);
+	}
 	/**
 	 * BinArrayIndividuals use 'Hamming distance' as distance.
 	 *
@@ -72,6 +86,12 @@ public class MatrizIndividual extends AbstractIndividual<int[][]>{
 	public IIndividual copy() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public int[] getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(int[] duracion) {
+		this.duracion = duracion;
 	}
 
 }
