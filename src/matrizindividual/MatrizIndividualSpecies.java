@@ -125,8 +125,8 @@ public class MatrizIndividualSpecies extends AbstractMatrizSpecies implements IC
 	{
 		// Genotype lenght: num operaciones x num estaciones
 		//cogemos los valores del .cfg
-		int num_operaciones = settings.getInt("[@genotype-length]", 0);
-		int num_estaciones = settings.getInt("[@num-estaciones]",0);
+		int num_operaciones = settings.getInt("[@num-estaciones]", 0);
+		int num_estaciones = settings.getInt("[@genotype-length]",0);
 		
 		if (num_operaciones != 0 && num_estaciones != 0) {
 			
