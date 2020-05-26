@@ -135,16 +135,19 @@ public class MatrizIndividualSpecies extends AbstractMatrizSpecies implements IC
 			// Set genotype schema components
 			
 			//Esto no se para que se usa asiq lo voy a dejar comentado hasta que lo sepa arreglar
-			/*
-			for (int i=0; i<genotypeLength; i++) {
+			
+			for (int i=0; i<num_operaciones; i++) {
 				// Set schema component
 				Interval integerSet = new Interval();
-				integerSet.setLeft(0);
-				integerSet.setRight(genotypeLength-1);
-				integerSet.setClosure(Closure.ClosedClosed);
-				genotypeSchema[i] = integerSet;
 				
-			}*/
+				integerSet.setLeft(0);
+				integerSet.setRight(num_operaciones-1);
+				integerSet.setClosure(Closure.ClosedClosed);
+				for(int j=0; j<num_estaciones; j++) {
+					genotypeSchema[i][j] = integerSet;
+				}
+				
+			}
 			
 			// Set genotype schema
 			setGenotypeSchema(genotypeSchema);
