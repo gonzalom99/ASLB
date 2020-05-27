@@ -97,7 +97,7 @@ public class MatrizIndividualCreator extends AbstractCreator
 	/////////////////////////////////////////////////////////////////
 	
 	/**
-	 * Create a int [] genotype, filling it randomly
+	 * Create a int [][] genotype, filling it randomly
 	 */
 	
 	private final int[][] createGenotype()
@@ -105,6 +105,7 @@ public class MatrizIndividualCreator extends AbstractCreator
 		// Genotype length
 		int gl = schema.length;
 		int gl2 = schema[0].length;
+		int [] duracion = MatrizIndividual.getDuracion();
 		
 		// New genotype
 		int [][] genotype = new int[gl][gl2];

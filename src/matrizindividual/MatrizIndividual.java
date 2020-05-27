@@ -23,7 +23,7 @@ public class MatrizIndividual extends AbstractIndividual<int[][]>{
 	 * 
 	 */
 	private static final long serialVersionUID = 3072035552876127168L;
-	private int[] duracion;
+	private static int[] duracion;
 	/**
 	 * Empty constructor
 	 */
@@ -87,11 +87,11 @@ public class MatrizIndividual extends AbstractIndividual<int[][]>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public int[] getDuracion() {
+	public static int[] getDuracion() {
 		return duracion;
 	}
-	public void setDuracion(int[] duracion) {
-		this.duracion = duracion;
+	public static void setDuracion(int[] duracion) {
+		
 	}
 
 }

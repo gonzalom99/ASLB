@@ -270,7 +270,7 @@ public class ASLB {
 			int num_operaciones = settings.getInt("[@num-operaciones]"), i=0;
 			File file = new File (fileName);
 			m_adyacencia = new MatrizAdyacencia(num_operaciones);
-			double duraciones[]= new double [num_operaciones];
+			int duraciones[]= new int [num_operaciones];
 	        double y[]= new double [num_operaciones];
 	        int numeroOp=0;
 	        int numEspacios=0;
@@ -310,7 +310,7 @@ public class ASLB {
 		        }
 		    
 		
-		        		
+		        	MatrizIndividual.setDuracion(duraciones);	
 		        	
 		        	
 		        
