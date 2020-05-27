@@ -15,6 +15,7 @@ import org.apache.commons.configuration.Configuration;
 import matrizindividual.MatrizAdyacencia;
 import matrizindividual.MatrizIndividual;
 import net.sf.jclec.IConfigure;
+import net.sf.jclec.IEvaluator;
 import net.sf.jclec.IFitness;
 import net.sf.jclec.IIndividual;
 import net.sf.jclec.base.AbstractEvaluator;
@@ -31,7 +32,7 @@ import net.sf.jclec.selector.TournamentSelector;
  * @author Gonzalo Martínez Salmerón
  * 
  */
-public class ASLB {
+public class ASLB extends AbstractEvaluator implements IConfigure{
 
 	//n numero de estaciones
 	static int n;
@@ -151,7 +152,7 @@ public class ASLB {
 		}
 	}
 	
-	public static void evaluate(IIndividual ind) {
+	public void evaluate(IIndividual ind) {
 		int [][] genotype = ((MatrizIndividual)ind).getGenotype();
 		//n estaciones m operaciones
 		//tenemos que recorrer la matriz y sumar las operaciones de las filas
@@ -232,6 +233,7 @@ public class ASLB {
 	
 		public void configure(Configuration settings)
 		{		
+			
 			String fileName = settings.getString("[@file-name]");
 			String line = null;
 			m = settings.getInt("[@num-operaciones]");
