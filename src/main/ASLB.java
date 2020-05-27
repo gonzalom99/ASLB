@@ -230,23 +230,24 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		return COMPARATOR;
 	}
 	
-	
+
 		public void configure(Configuration settings)
 		{		
 			
 			String fileName = settings.getString("[@file-name]");
+			//System.out.println(fileName);
 			String line = null;
-			m = settings.getInt("[@num-operaciones]");
-			n= settings.getInt("[@num-estaciones]");
-			File file = new File (fileName);
+			
+			m=settings.getInt("[@number-operations]");
+			n=settings.getInt("[@number-estaciones]");
+			//System.out.println(m + " "+ n);
+			duracion = new int[m];
 			m_adyacencia = new MatrizAdyacencia(m);
+			File file = new File (fileName);
 			//int duraciones[]= new int [num_operaciones];
 	       // double y[]= new double [num_operaciones];
-	        int numeroOp=0;
-	        int numEspacios=0;
-	        String dur=null;
-	        String opAdy=null;
-			
+	        int k=0;
+			int z=1;
 		    try {
 				FileReader fr = new FileReader(file);
 				br = new BufferedReader(fr);
@@ -254,31 +255,25 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		        while(!(line=br.readLine()).contains("NODE_COORD_SECTION"));
 		        while(!(line=br.readLine()).contains("EOF"))
 		        {
-		        	String numop=null;
-		        	for(int k=0; k<line.length(); k++) {
-		        		numop=  numop + line.charAt(k);
-		        		if(line.charAt(k)== ' ' && numEspacios==0) {
-		        			numeroOp= Integer.parseInt(numop);
-		        			numEspacios++;
-		        		}
-		        		if(line.charAt(k)!= ' ' && numEspacios==0) {
-		        			dur=dur + line.charAt(k);
-		        		}
-		        		if(line.charAt(k)== ' ' && numEspacios==1) {
-		        			duracion[numeroOp-1]=Integer.parseInt(dur);
-		        			numEspacios++;
-		        		}
-		        		if(line.charAt(k)!= ',' && numEspacios == 2) {
-		        			opAdy= opAdy + line.charAt(k);
-		        		}
-		        		if(line.charAt(k)== ',') {
-		        			//Comprobar luego si las filas y las columnas estan bien
-		        			int operacionAdy = Integer.parseInt(opAdy);
-		        			m_adyacencia.agregar(numeroOp-1,operacionAdy);
-		        		}
+		        	line=String.copyValueOf(line.toCharArray(), line.indexOf(" "), line.length()-line.indexOf(" "));
+		        
+		        	line=line.trim();
+		        	//System.out.println(line);
+		        	duracion[k]=Integer.valueOf(line.split(" ")[0]).intValue();
+		        	int length =line.split(" ").length;		
+		        	//System.out.println(length);
+		        	while(z<length) {
+		        		//comprobar luego filas y columnas
+		        		//ahora es (numOp,precedente)
+		        		System.out.println("Agregamos: fila "+k+" columna :" +Integer.valueOf(line.split(" ")[z]));
+		        		m_adyacencia.agregar(k, Integer.valueOf(line.split(" ")[z]));
+		        		z++;
 		        	}
+		        	
+		        k++;	
 		        }
-		    
+		        
+		 
 		
 		        	
 		        	
