@@ -34,10 +34,10 @@ import net.sf.jclec.selector.TournamentSelector;
 public class ASLB {
 
 	//n numero de estaciones
-	static int n=3;
+	static int n;
 
 	//m numero de operaciones
-	static int m=10;
+	static int m;
 
 	//duracion operaciones
 	public static int duracion[] = new int [m];
@@ -47,7 +47,7 @@ public class ASLB {
 
 
 	//matriz de adyacencia
-	static MatrizAdyacencia m_adyacencia = new MatrizAdyacencia(10);
+	static MatrizAdyacencia m_adyacencia = new MatrizAdyacencia(m);
 
 	//Comparador de fitness
 	private Comparator<IFitness> COMPARATOR;
@@ -55,6 +55,8 @@ public class ASLB {
 	//Buffered reader
 	private BufferedReader br;
 
+	
+	/*
 	public static int [][] solucionAleatoria(){
 		ArrayList<Integer> operaciones = new ArrayList<Integer>();
 		operaciones.add(1);
@@ -96,7 +98,7 @@ public class ASLB {
 		return matriz;
 
 	}
-
+	
 	public static ArrayList<int [][]> solucionesAleatorias(int numSoluciones){
 		Random rand = new Random();
 		ArrayList<int [][]> resultado = new ArrayList<int [][]>();
@@ -135,7 +137,7 @@ public class ASLB {
 
 		return resultado;
 
-	}
+	}*/
 
 	//imprimir una matriz pasada como parametro
 	public static void impr(int [][] matriz) {
@@ -148,43 +150,8 @@ public class ASLB {
 			System.out.println("|");
 		}
 	}
-
-	public static int evaluate(int [][] genotype, MatrizAdyacencia matAdy) {
-		//n estaciones m operaciones
-		//tenemos que recorrer la matriz y sumar las operaciones de las filas
-		//luego nos quedamos con la mas alta
-		int orden=0;
-		int fitness =0;
-		int valorEstacion =0;
-		for(int i=0; i< n; i++) {
-			valorEstacion=0;
-			for(int j=0; j<m; j++ ) {
-				valorEstacion  += genotype[i][j];
-			}
-			if (valorEstacion > fitness) {
-				fitness = valorEstacion;
-			}
-		}
-
-		//Ahora comprobamos que se cumple el orden
-
-		//primero recorremos la matriz adyacencia para ver que operaciones necesitan a otras
-		for(int filas=0; filas<10; filas++) {
-			for(int columnas=0; columnas <10; columnas++) {
-				//Si es 1 es que el elemento columna necesita al fila 
-				if(matAdy.getElem(filas, columnas) == 1) {
-					//comprobamos que pertenezca a la misma estacion o a una mayor
-					if(getEstacion(genotype,filas) > getEstacion(genotype, columnas)) {
-						orden --;
-					}
-				}
-			}
-
-		}
-		System.out.println(orden);
-		return fitness;
-	}
-	public static void evaluateConIFitness(IIndividual ind, MatrizAdyacencia matAdy) {
+	
+	public static void evaluate(IIndividual ind) {
 		int [][] genotype = ((MatrizIndividual)ind).getGenotype();
 		//n estaciones m operaciones
 		//tenemos que recorrer la matriz y sumar las operaciones de las filas
@@ -205,10 +172,10 @@ public class ASLB {
 		//Ahora comprobamos que se cumple el orden
 
 		//primero recorremos la matriz adyacencia para ver que operaciones necesitan a otras
-		for(int filas=0; filas<10; filas++) {
-			for(int columnas=0; columnas <10; columnas++) {
+		for(int filas=0; filas<m; filas++) {
+			for(int columnas=0; columnas <m; columnas++) {
 				//Si es 1 es que el elemento columna necesita al fila 
-				if(matAdy.getElem(filas, columnas) == 1) {
+				if(m_adyacencia.getElem(filas, columnas) == 1) {
 					//comprobamos que pertenezca a la misma estacion o a una mayor
 					if(getEstacion(genotype,filas) > getEstacion(genotype, columnas)) {
 						orden --;
@@ -262,16 +229,17 @@ public class ASLB {
 		return COMPARATOR;
 	}
 	
-	//Este metodo es el que lee de CFG las coordenadas y las distancias
+	
 		public void configure(Configuration settings)
 		{		
 			String fileName = settings.getString("[@file-name]");
 			String line = null;
-			int num_operaciones = settings.getInt("[@num-operaciones]"), i=0;
+			m = settings.getInt("[@num-operaciones]");
+			n= settings.getInt("[@num-estaciones]");
 			File file = new File (fileName);
-			m_adyacencia = new MatrizAdyacencia(num_operaciones);
-			int duraciones[]= new int [num_operaciones];
-	        double y[]= new double [num_operaciones];
+			m_adyacencia = new MatrizAdyacencia(m);
+			//int duraciones[]= new int [num_operaciones];
+	       // double y[]= new double [num_operaciones];
 	        int numeroOp=0;
 	        int numEspacios=0;
 	        String dur=null;
@@ -320,7 +288,7 @@ public class ASLB {
 		}
 	
 	
-	
+	/*
 	public static void main(String[] args) {
 
 		//generar matriz de adyacencia
@@ -356,7 +324,7 @@ public class ASLB {
 					System.out.println("----------------SOLUCION " +(i+1)+"------------");
 					impr(solucion_actual);
 					System.out.println();
-					System.out.println("El valor mas alto de estaciones es:"+evaluate(solucion_actual, m_adyacencia));
+					//System.out.println("El valor mas alto de estaciones es:"+evaluate(solucion_actual, m_adyacencia));
 					System.out.println();
 				}
 
@@ -370,7 +338,7 @@ public class ASLB {
 		
 		//imprimir soluciones evaluadas con fitness
 		for(int i=0;i<lista.size();i++) {
-			evaluateConIFitness(lista.get(i), m_adyacencia);
+			evaluate(lista.get(i));
 			System.out.println("INDIVIDUO "+ (i+1) + " :"+ lista.get(i));
 		}
 
@@ -385,5 +353,6 @@ public class ASLB {
 		//System.out.println("Tamaño escogidos: " + escogidos.size());
 		//	System.out.print(Torneo.select(lista));
 	}
+	*/
 
 }
