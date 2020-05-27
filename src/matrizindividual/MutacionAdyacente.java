@@ -22,6 +22,7 @@ public class MutacionAdyacente extends MatrizMutator{
 		super();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void mutateNext() {
 		// TODO Auto-generated method stub
@@ -34,7 +35,6 @@ public class MutacionAdyacente extends MatrizMutator{
 		IIndividual mutant = parentsBuffer.get(parentsCounter);
 		
 		int cp1 = randgen.choose(0, gl-2);
-		
 		
 		System.arraycopy(((AbstractIndividual<int[][]>) mutant).getGenotype(),0, mgenome,0, gl);
 		
