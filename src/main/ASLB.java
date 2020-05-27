@@ -40,7 +40,7 @@ public class ASLB {
 	static int m=10;
 
 	//duracion operaciones
-	static int duracion[] = {10,13,18,15,8,7,6,9,12,10};
+	public static int duracion[] = new int [m];
 
 	//matriz asociada a cada individuo A m*n
 	int A[][] = new int [m][n];	
@@ -295,7 +295,7 @@ public class ASLB {
 		        			dur=dur + line.charAt(k);
 		        		}
 		        		if(line.charAt(k)== ' ' && numEspacios==1) {
-		        			duraciones[numeroOp-1]=Integer.parseInt(dur);
+		        			duracion[numeroOp-1]=Integer.parseInt(dur);
 		        			numEspacios++;
 		        		}
 		        		if(line.charAt(k)!= ',' && numEspacios == 2) {
@@ -310,7 +310,7 @@ public class ASLB {
 		        }
 		    
 		
-		        	MatrizIndividual.setDuracion(duraciones);	
+		        	
 		        	
 		        	
 		        

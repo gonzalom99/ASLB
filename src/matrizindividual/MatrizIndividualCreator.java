@@ -1,5 +1,6 @@
 package matrizindividual;
 
+import main.ASLB;
 import net.sf.jclec.ISpecies;
 import net.sf.jclec.base.AbstractCreator;
 import net.sf.jclec.util.intset.IIntegerSet;
@@ -105,7 +106,7 @@ public class MatrizIndividualCreator extends AbstractCreator
 		// Genotype length
 		int gl = schema.length;
 		int gl2 = schema[0].length;
-		int [] duracion = MatrizIndividual.getDuracion();
+		int [] duracion = ASLB.duracion;
 		
 		// New genotype
 		int [][] genotype = new int[gl][gl2];
