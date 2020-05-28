@@ -22,6 +22,7 @@ import net.sf.jclec.base.AbstractEvaluator;
 import net.sf.jclec.fitness.SimpleValueFitness;
 import net.sf.jclec.fitness.ValueFitnessComparator;
 import net.sf.jclec.selector.TournamentSelector;
+import net.sf.jclec.intarray.IntArrayIndividual;
 
  
 /**
@@ -153,16 +154,36 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	}
 	
 	public void evaluate(IIndividual ind) {
-		int [][] genotype = ((MatrizIndividual)ind).getGenotype();
+		int [] genotype2 = ((IntArrayIndividual)ind).getGenotype();
+		int [][] genotype = new int[m][n];
+		//System.out.println(m + " " + n);
+		
+		
+		for(int k=0; k<m; k++) {
+			for(int j=0; j<n; j++) {
+				genotype[k][j]=0;
+			}
+		}
+		for(int i=0; i<genotype2.length;i++) {
+			
+		genotype[genotype2[i]-1][i]=duracion[i];	
+		}
+		
+		
+
+		System.out.println("La matriz solucion es: ");
+		impr(genotype);
+		
+		
 		//n estaciones m operaciones
 		//tenemos que recorrer la matriz y sumar las operaciones de las filas
 		//luego nos quedamos con la mas alta
 		int orden=0;
 		int fitness =0;
 		int valorEstacion =0;
-		for(int i=0; i< n; i++) {
+		for(int i=0; i< m; i++) {
 			valorEstacion=0;
-			for(int j=0; j<m; j++ ) {
+			for(int j=0; j<n; j++ ) {
 				valorEstacion  += genotype[i][j];
 			}
 			if (valorEstacion > fitness) {
@@ -199,7 +220,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	//Esta funcion te devuelve la estacion a la que pertenece una operacion en la solucion
 	public static int getEstacion(int [][]solucion, int operacion) {
 		int estacion =-1;
-		for(int i=0; i<n; i++) {
+		for(int i=0; i<m; i++) {
 			if(solucion[i][operacion]!= 0) {
 				estacion = i;
 			}
@@ -238,11 +259,11 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 			//System.out.println(fileName);
 			String line = null;
 			
-			m=settings.getInt("[@number-operations]");
-			n=settings.getInt("[@number-estaciones]");
+			n=settings.getInt("[@number-operations]");
+			m=settings.getInt("[@number-estaciones]");
 			//System.out.println(m + " "+ n);
-			duracion = new int[m];
-			m_adyacencia = new MatrizAdyacencia(m);
+			duracion = new int[n];
+			m_adyacencia = new MatrizAdyacencia(n);
 			File file = new File (fileName);
 			//int duraciones[]= new int [num_operaciones];
 	       // double y[]= new double [num_operaciones];
