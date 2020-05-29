@@ -35,6 +35,11 @@ import net.sf.jclec.intarray.IntArrayIndividual;
  */
 public class ASLB extends AbstractEvaluator implements IConfigure{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//n numero de estaciones
 	static int n;
 
