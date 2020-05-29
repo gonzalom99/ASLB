@@ -1,6 +1,7 @@
 package main;
 
 import java.util.List;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -38,7 +39,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -2635335580011827514L;
 
 	//n numero de estaciones
 	static int n;
@@ -61,7 +62,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	
 	//Buffered reader
 	private BufferedReader br;
-
+	
 	
 	/*
 	public static int [][] solucionAleatoria(){
@@ -163,7 +164,8 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		int [][] genotype = new int[m][n];
 		//System.out.println(m + " " + n);
 		
-		
+		System.out.println("LONGITUD INDIVIDUAL 1 "+genotype2.length);
+		System.out.println("LONGITUD INDIVIDUAL "+((IntArrayIndividual)ind).getGenotype().length);
 		for(int k=0; k<m; k++) {
 			for(int j=0; j<n; j++) {
 				genotype[k][j]=0;
@@ -176,7 +178,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		
 		
 
-		System.out.println("La matriz solucion es: ");
+	    System.out.println("La matriz solucion es: ");
 		impr(genotype);
 		
 		
@@ -284,33 +286,39 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		        	line=String.copyValueOf(line.toCharArray(), line.indexOf(" "), line.length()-line.indexOf(" "));
 		        
 		        	line=line.trim();
-		        	//System.out.println(line);
+		        	//System.out.println("linea "+line);
 		        	duracion[k]=Integer.valueOf(line.split(" ")[0]).intValue();
 		        	int length =line.split(" ").length;		
-		        	//System.out.println(length);
+		        	//System.out.println("longitud: "+length);
 		        	while(z<length) {
 		        		//comprobar luego filas y columnas
-		        		//ahora es (numOp,precedente)
-		        		System.out.println("Agregamos: fila "+k+" columna :" +Integer.valueOf(line.split(" ")[z]));
-		        		m_adyacencia.agregar(k, Integer.valueOf(line.split(" ")[z]));
+		        		//ahora es (numOp,precedente)´
+		        	//	System.out.println("NUMERO "+ Integer.valueOf(line.split(" ")[z]));
+		        	//	System.out.println("Agregamos: fila "+k+" columna :" +Integer.valueOf(line.split(" ")[z]));
+		        	//	m_adyacencia.agregar(k, Integer.valueOf(line.split(" ")[z]));
+		        		System.out.println("Agregamos: fila "+Integer.valueOf(line.split(" ")[z])+" columna :" + (k+1));
+			        	m_adyacencia.agregar(Integer.valueOf(line.split(" ")[z])-1, k);
 		        		z++;
 		        	}
+		        	z=1;
 		        	
 		        k++;	
 		        }
 		        
-		 
-		
-		        	
-		        	
-		        	
 		        
 			} catch (IOException e) {
 	            System.out.println(e);
 			}
+		    
+		    for(int i=0;i<duracion.length;i++) {
+		    	System.out.println("duracion: "+duracion[i]);
+		    }
+		    m_adyacencia.imprimir();
+		    
 		}
 	
-	
+		
+		
 	/*
 	public static void main(String[] args) {
 
