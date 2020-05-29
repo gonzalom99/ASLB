@@ -31,7 +31,7 @@ import net.sf.jclec.intarray.IntArrayIndividual;
  * 
  * @author Paula Robles Mateos
  * @author Maria Merino Pereda
- * @author Gonzalo Martínez Salmerón
+ * @author Gonzalo Martï¿½nez Salmerï¿½n
  * 
  */
 public class ASLB extends AbstractEvaluator implements IConfigure{
@@ -160,9 +160,14 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	}
 	
 	public void evaluate(IIndividual ind) {
+		
 		int [] genotype2 = ((IntArrayIndividual)ind).getGenotype();
 		int [][] genotype = new int[m][n];
-		//System.out.println(m + " " + n);
+		System.out.println(m +" " +n);
+		System.out.println("La longitud del genotype es: "+genotype2.length);
+		for(int k=0; k<3; k++) {
+		//System.out.println("El ind que llega es: "+genotype2[k]);
+		}
 		
 		System.out.println("LONGITUD INDIVIDUAL 1 "+genotype2.length);
 		System.out.println("LONGITUD INDIVIDUAL "+((IntArrayIndividual)ind).getGenotype().length);
@@ -172,8 +177,8 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 			}
 		}
 		for(int i=0; i<genotype2.length;i++) {
-			
-		genotype[genotype2[i]-1][i]=duracion[i];	
+			System.out.println((int) genotype2[i]);
+		genotype[genotype2[i]][i]=duracion[i];	
 		}
 		
 		
@@ -292,7 +297,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		        	//System.out.println("longitud: "+length);
 		        	while(z<length) {
 		        		//comprobar luego filas y columnas
-		        		//ahora es (numOp,precedente)´
+		        		//ahora es (numOp,precedente)ï¿½
 		        	//	System.out.println("NUMERO "+ Integer.valueOf(line.split(" ")[z]));
 		        	//	System.out.println("Agregamos: fila "+k+" columna :" +Integer.valueOf(line.split(" ")[z]));
 		        	//	m_adyacencia.agregar(k, Integer.valueOf(line.split(" ")[z]));
@@ -365,7 +370,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 			IIndividual aux = new MatrizIndividual(soluciones.get(i));
 			lista.add(aux);
 		}
-		System.out.println("Tamaño lista de individuos: " + lista.size());
+		System.out.println("Tamaï¿½o lista de individuos: " + lista.size());
 		
 		//imprimir soluciones evaluadas con fitness
 		for(int i=0;i<lista.size();i++) {
@@ -381,7 +386,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		List<IIndividual> escogidos = new ArrayList<IIndividual>();
 		
 		escogidos = Torneo.select(lista,1,false);
-		//System.out.println("Tamaño escogidos: " + escogidos.size());
+		//System.out.println("Tamaï¿½o escogidos: " + escogidos.size());
 		//	System.out.print(Torneo.select(lista));
 	}
 	*/
