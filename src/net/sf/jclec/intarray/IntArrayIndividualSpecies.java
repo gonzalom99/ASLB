@@ -83,65 +83,61 @@ public class IntArrayIndividualSpecies extends IntArraySpecies implements IConfi
 	
 	// IConfigure interface
 	
-//	public void configure(Configuration settings) 
-//	{
-//		// Genotype lenght
-//		int genotypeLength = 
-//			settings.getList("genotype-schema.locus[@type]").size();
-//		int genotypeLength2 = settings.getInt("[@genotype-length]", 0);
-//		System.out.println("EOOOOOO 1111 "+ genotypeLength);
-//		System.out.println("EOOOOOO 2222 "+ genotypeLength2);
-//		
-//		// Genotype schema
-//		IIntegerSet [] genotypeSchema = new IIntegerSet[genotypeLength];
-//		// Set genotype schema components
-//		for (int i=0; i<genotypeLength; i++) {
-//			// Get component classname
-//			String componentClassname = 
-//				settings.getString("genotype-schema.locus("+i+")[@type]");
-//			try {
-//				Class<?> componentClass = 
-//					Class.forName(componentClassname);
-//				// Set schema component
-//				genotypeSchema[i] = 
-//					(IIntegerSet) componentClass.newInstance();
-//				// Configure component
-//				if (genotypeSchema[i] instanceof IConfigure) {
-//					((IConfigure) genotypeSchema[i]).configure
-//						(settings.subset("genotype-schema.locus("+i+")"));
-//				}
-//			}
-//			catch(ClassNotFoundException e) {
-//				
-//			}
-//			catch(IllegalAccessException e) {
-//				
-//			}
-//			catch(InstantiationException e) {
-//				
-//			}			
-//		}
-//		// Assign genotype schema
-//		setGenotypeSchema(genotypeSchema);
-//	}	
+	public void configure2(Configuration settings) 
+	{
+		// Genotype lenght
+		int genotypeLength = 
+			settings.getList("genotype-schema.locus[@type]").size();
+		// Genotype schema
+		IIntegerSet [] genotypeSchema = new IIntegerSet[genotypeLength];
+		// Set genotype schema components
+		for (int i=0; i<genotypeLength; i++) {
+			// Get component classname
+			String componentClassname = 
+				settings.getString("genotype-schema.locus("+i+")[@type]");
+			try {
+				Class<?> componentClass = 
+					Class.forName(componentClassname);
+				// Set schema component
+				genotypeSchema[i] = 
+					(IIntegerSet) componentClass.newInstance();
+				// Configure component
+				if (genotypeSchema[i] instanceof IConfigure) {
+					((IConfigure) genotypeSchema[i]).configure
+						(settings.subset("genotype-schema.locus("+i+")"));
+				}
+			}
+			catch(ClassNotFoundException e) {
+				
+			}
+			catch(IllegalAccessException e) {
+				
+			}
+			catch(InstantiationException e) {
+				
+			}			
+		}
+		// Assign genotype schema
+		setGenotypeSchema(genotypeSchema);
+	}	
 	
 	public void configure(Configuration settings) 
 	{
 		// Genotype lenght
 		int genotypeLength = settings.getInt("[@genotype-length]", 0);
-		System.out.println("GENOTYPE LENGTH "+ genotypeLength);
+		int num_estaciones = settings.getInt("[@numero-estaciones]", 0);
 		
 		if (genotypeLength != 0) {
 			
 			// Genotype schema
-			IIntegerSet[] genotypeSchema = new IIntegerSet[genotypeLength];
+			IIntegerSet [] genotypeSchema = new IIntegerSet[genotypeLength];
 			// Set genotype schema components
 			
 			for (int i=0; i<genotypeLength; i++) {
 				// Set schema component
 				Interval integerSet = new Interval();
 				integerSet.setLeft(0);
-				integerSet.setRight(genotypeLength-1);
+				integerSet.setRight(num_estaciones-1);
 				integerSet.setClosure(Closure.ClosedClosed);
 				genotypeSchema[i] = integerSet;
 				
@@ -185,3 +181,4 @@ public class IntArrayIndividualSpecies extends IntArraySpecies implements IConfi
 		}
 	}
 }
+
