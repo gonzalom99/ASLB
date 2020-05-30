@@ -162,32 +162,33 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	public void evaluate(IIndividual ind) {
 		
 		int [] genotype2 = ((IntArrayIndividual)ind).getGenotype();
+	
 		int [][] genotype = new int[m][n];
-		System.out.println(m +" " +n);
-		System.out.println("La longitud del genotype es: "+genotype2.length);
+		//System.out.println(m +" " +n);
+		//System.out.println("La longitud del genotype es: "+genotype2.length);
 		for(int k=0; k<3; k++) {
 		//System.out.println("El ind que llega es: "+genotype2[k]);
 		}
 		
-		System.out.println("LONGITUD INDIVIDUAL 1 "+genotype2.length);
-		System.out.println("LONGITUD INDIVIDUAL "+((IntArrayIndividual)ind).getGenotype().length);
+		//System.out.println("LONGITUD INDIVIDUAL 1 "+genotype2.length);
+		//System.out.println("LONGITUD INDIVIDUAL "+((IntArrayIndividual)ind).getGenotype().length);
 		for(int k=0; k<m; k++) {
 			for(int j=0; j<n; j++) {
 				genotype[k][j]=0;
 			}
 		}
 		for(int i=0; i<genotype2.length;i++) {
-			System.out.println((int) genotype2[i]);
+			//System.out.println((int) genotype2[i]);
 		genotype[genotype2[i]][i]=duracion[i];	
 		}
 		
 		
 
-	    System.out.println("La matriz solucion es: ");
-		impr(genotype);
+	    //System.out.println("La matriz solucion es: ");
+		//impr(genotype);
 		
 		
-		//n estaciones m operaciones
+		//m estaciones n operaciones
 		//tenemos que recorrer la matriz y sumar las operaciones de las filas
 		//luego nos quedamos con la mas alta
 		int orden=0;
@@ -197,34 +198,46 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 			valorEstacion=0;
 			for(int j=0; j<n; j++ ) {
 				valorEstacion  += genotype[i][j];
+				
 			}
 			if (valorEstacion > fitness) {
 				fitness = valorEstacion;
+				System.out.println("el fitness es: " +fitness);
 			}
 		}
 
 		//Ahora comprobamos que se cumple el orden
 
 		//primero recorremos la matriz adyacencia para ver que operaciones necesitan a otras
-		for(int filas=0; filas<m; filas++) {
-			for(int columnas=0; columnas <m; columnas++) {
+		for(int filas=0; filas<n; filas++) {
+			for(int columnas=0; columnas <n; columnas++) {
 				//Si es 1 es que el elemento columna necesita al fila 
 				if(m_adyacencia.getElem(filas, columnas) == 1) {
 					//comprobamos que pertenezca a la misma estacion o a una mayor
 					if(getEstacion(genotype,filas) > getEstacion(genotype, columnas)) {
-						orden --;
+						orden ++;
 					}
 				}
 			}
 
 		}
-		if(orden>0) {
+		System.out.println("el orden es: " +orden);
+		//Si es 0 es que cumple el orden y se establece el valor de la estacion mas alta
+		if(orden==0) {
 			ind.setFitness(new SimpleValueFitness(fitness));
 		}
+		//Si es negativo, no cumple el orden y ponemos un valor mucho mayor para que lo descarte el algoritmo
 		else {
-			ind.setFitness(new SimpleValueFitness(orden));
+			fitness= fitness * (orden+1);
+			ind.setFitness(new SimpleValueFitness(fitness));
 		}
-		//System.out.println(orden);
+		System.out.println("El valor de fitness para ");
+		for(int i=0; i<genotype2.length;i++) {
+			System.out.println((int) genotype2[i]);
+			
+		}
+		System.out.println("El valor final de fitnes es: "+ind.getFitness());
+		
 
 	}
 
@@ -309,6 +322,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		        	
 		        k++;	
 		        }
+		       
 		        
 		        
 			} catch (IOException e) {
