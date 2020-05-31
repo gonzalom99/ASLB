@@ -5,7 +5,14 @@ import net.sf.jclec.intarray.IntArrayIndividual;
 import net.sf.jclec.intarray.IntArrayMutator;
 
 public class MutacionAdyacenteArray extends IntArrayMutator{
-
+	/**
+	 * Mutacion adyacente en arrays enteros
+	 * 
+	 * @author Paula Robles Mateos
+	 * @author Maria Merino Pereda
+	 * @author Gonzalo Mart�nez Salmer�n
+	 * 
+	 */
 	
 	/**
 	 * 

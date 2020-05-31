@@ -6,7 +6,9 @@ import net.sf.jclec.util.intset.IIntegerSet;
 /**
  * Abstract implementation for IIntArraySpecies.
  * 
- * @author Sebastian Ventura
+ * @author Gonzalo Martínez Salmerón
+ * @author Maria Merino Pereda
+ * @author Paula Robles Mateos
  */
 
 @SuppressWarnings("serial")

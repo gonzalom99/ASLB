@@ -82,12 +82,13 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		int [] genotype2 = ((IntArrayIndividual)ind).getGenotype();
 	
 		int [][] genotype = new int[m][n];
-		//System.out.println(m +" " +n);
-		//System.out.println("La longitud del genotype es: "+genotype2.length);
+		/*
+		System.out.println(m +" " +n);
+		System.out.println("La longitud del genotype es: "+genotype2.length);
 		for(int k=0; k<3; k++) {
-		//System.out.println("El ind que llega es: "+genotype2[k]);
+		System.out.println("El ind que llega es: "+genotype2[k]);
 		}
-		
+		*/
 		//System.out.println("LONGITUD INDIVIDUAL 1 "+genotype2.length);
 		//System.out.println("LONGITUD INDIVIDUAL "+((IntArrayIndividual)ind).getGenotype().length);
 		for(int k=0; k<m; k++) {
@@ -95,15 +96,14 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 				genotype[k][j]=0;
 			}
 		}
+		
+		
 		for(int i=0; i<genotype2.length;i++) {
 			//System.out.println((int) genotype2[i]);
 		genotype[genotype2[i]-1][i]=duracion[i];	
 		}
 		
 		
-
-	    //System.out.println("La matriz solucion es: ");
-		//impr(genotype);
 		
 		
 		//m estaciones n operaciones
@@ -144,18 +144,20 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		if(orden==0) {
 			ind.setFitness(new SimpleValueFitness(fitness));
 		}
-		//Si es negativo, no cumple el orden y ponemos un valor mucho mayor para que lo descarte el algoritmo
+		//Si no cumple el orden, ponemos un valor mucho mayor para que lo descarte el algoritmo
 		else {
 			fitness= fitness * (orden+1);
 			ind.setFitness(new SimpleValueFitness(fitness));
 		}
+		
+		/*
 		System.out.println("El valor de fitness para ");
 		for(int i=0; i<genotype2.length;i++) {
 			System.out.println((int) genotype2[i]);
 			
 		}
 		System.out.println("El valor final de fitnes es: "+ind.getFitness());
-		
+		*/
 
 	}
 
