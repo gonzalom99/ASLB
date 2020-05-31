@@ -42,10 +42,10 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	private static final long serialVersionUID = -2635335580011827514L;
 
 	//n numero de estaciones
-	static int n;
+	public static int m;
 
 	//m numero de operaciones
-	static int m;
+	static int n;
 
 	//duracion operaciones
 	public static int duracion[] = new int [m];

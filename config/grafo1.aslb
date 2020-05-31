@@ -1,7 +1,7 @@
 NAME: grafo1
 TYPE: ASLB
 OPERACIONES: 10
-COMMENT: num_operaion | duracion | precedentes 
+COMMENT: num_operacion | duracion | precedentes 
 NODE_COORD_SECTION
 1 10 
 2 13 1
