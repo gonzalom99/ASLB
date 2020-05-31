@@ -39,11 +39,11 @@ public class MutacionAdyacenteArray extends IntArrayMutator{
 				System.out.println("ESTAMOS EN MUTACION:");
 					System.out.println("EL VALOR MAX ES:"+ASLB.m);
 				//si pertenece a la primera estacion le sumamos uno siempre
-				if(mgenome[mp]==0) {
+				if(mgenome[mp]==1) {
 				mgenome[mp] ++;
 				}
 				//Si pertenece a la ultima le restamos uno siempre
-				if(mgenome[mp]== ASLB.m-1) {
+				if(mgenome[mp]== ASLB.m) {
 					
 					mgenome[mp] --;
 				}

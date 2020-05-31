@@ -64,88 +64,6 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	private BufferedReader br;
 	
 	
-	/*
-	public static int [][] solucionAleatoria(){
-		ArrayList<Integer> operaciones = new ArrayList<Integer>();
-		operaciones.add(1);
-		operaciones.add(2);
-		operaciones.add(3);
-		operaciones.add(4);
-		operaciones.add(5);
-		operaciones.add(6);
-		operaciones.add(7);
-		operaciones.add(8);
-		operaciones.add(9);
-		operaciones.add(10);
-
-		int matriz[][] = new int[n][m];
-
-		//se inicializa matriz en 0
-		for(int i=0; i< n; i++){
-			for(int j=0; j< m; j++){
-				matriz[i][j] = 0;
-			}        
-		}
-
-
-		for(int k=0; k<m; k++) {
-			int posicion= (int) (Math.random() * 3);
-			matriz[posicion][k]= duracion[k];
-
-		}
-
-		for (int x=0; x < matriz.length; x++) {
-			System.out.print("|");
-			for (int y=0; y < matriz[x].length; y++) {
-				System.out.print (matriz[x][y]);
-				if (y!=matriz[x].length-1) System.out.print("\t");
-			}
-			System.out.println("|");
-		}
-
-		return matriz;
-
-	}
-	
-	public static ArrayList<int [][]> solucionesAleatorias(int numSoluciones){
-		Random rand = new Random();
-		ArrayList<int [][]> resultado = new ArrayList<int [][]>();
-		ArrayList<Integer> usados = new ArrayList<Integer>();
-		ArrayList<Integer> operaciones = new ArrayList<Integer>();
-
-		operaciones.add(1);
-		operaciones.add(2);
-		operaciones.add(3);
-		operaciones.add(4);
-		operaciones.add(5);
-		operaciones.add(6);
-		operaciones.add(7);
-		operaciones.add(8);
-		operaciones.add(9);
-		operaciones.add(10);
-
-
-
-
-		for(int iter=0; iter < numSoluciones; iter++) {
-			int matriz[][] = new int[n][m];
-			//se inicializa matriz en 0
-			for(int i=0; i< n; i++){
-				for(int j=0; j< m; j++){
-					matriz[i][j] = 0;
-				}        
-			}
-
-			for(int k=0; k<m; k++) {
-				int posicion= (int) (Math.random() * 3);
-				matriz[posicion][k]= duracion[k];
-			}
-			resultado.add(matriz);
-		}
-
-		return resultado;
-
-	}*/
 
 	//imprimir una matriz pasada como parametro
 	public static void impr(int [][] matriz) {
@@ -179,7 +97,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		}
 		for(int i=0; i<genotype2.length;i++) {
 			//System.out.println((int) genotype2[i]);
-		genotype[genotype2[i]][i]=duracion[i];	
+		genotype[genotype2[i]-1][i]=duracion[i];	
 		}
 		
 		
@@ -338,71 +256,6 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	
 		
 		
-	/*
-	public static void main(String[] args) {
-
-		//generar matriz de adyacencia
-		m_adyacencia.agregar(0, 1);
-		m_adyacencia.agregar(0, 3);
-		m_adyacencia.agregar(0, 2);
-		m_adyacencia.agregar(1, 4);
-		m_adyacencia.agregar(3, 4);
-		m_adyacencia.agregar(3, 5);
-		m_adyacencia.agregar(2, 6);
-		m_adyacencia.agregar(2, 8);
-		m_adyacencia.agregar(4, 7);
-		m_adyacencia.agregar(5, 6);
-		m_adyacencia.agregar(5, 7);
-		m_adyacencia.agregar(7, 9);
-		m_adyacencia.agregar(6, 9);
-		m_adyacencia.agregar(8, 9);
-		//m_adyacencia.imprimir();
-
-		//			int [][]sol= solucionAleatoria();
-		//
-		//			System.out.println("El valor mas alto de estaciones es:"+evaluate(sol, m_adyacencia));
-
-		//lista donde se guardan las soluciones
-		ArrayList<int [][]> soluciones = new ArrayList<int [][]>();
-
-		//crear 4 soluciones aleatorias
-		soluciones=solucionesAleatorias(4);
-
-		//imprimir soluciones evaluadas sin fitness
-				for(int i=0;i<soluciones.size();i++) {
-					int [][] solucion_actual=soluciones.get(i);
-					System.out.println("----------------SOLUCION " +(i+1)+"------------");
-					impr(solucion_actual);
-					System.out.println();
-					//System.out.println("El valor mas alto de estaciones es:"+evaluate(solucion_actual, m_adyacencia));
-					System.out.println();
-				}
-
-
-		List<IIndividual> lista = new ArrayList<IIndividual>();
-		for(int i=0; i<soluciones.size(); i++) {
-			IIndividual aux = new MatrizIndividual(soluciones.get(i));
-			lista.add(aux);
-		}
-		System.out.println("Tama�o lista de individuos: " + lista.size());
-		
-		//imprimir soluciones evaluadas con fitness
-		for(int i=0;i<lista.size();i++) {
-			evaluate(lista.get(i));
-			System.out.println("INDIVIDUO "+ (i+1) + " :"+ lista.get(i));
-		}
-
-		
-		//seleccion por torneo
-		TournamentSelector Torneo = new TournamentSelector();
-		Torneo.setTournamentSize(2);
-
-		List<IIndividual> escogidos = new ArrayList<IIndividual>();
-		
-		escogidos = Torneo.select(lista,1,false);
-		//System.out.println("Tama�o escogidos: " + escogidos.size());
-		//	System.out.print(Torneo.select(lista));
-	}
-	*/
+	
 
 }

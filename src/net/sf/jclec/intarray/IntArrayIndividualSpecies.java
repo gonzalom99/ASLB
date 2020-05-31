@@ -136,8 +136,8 @@ public class IntArrayIndividualSpecies extends IntArraySpecies implements IConfi
 			for (int i=0; i<genotypeLength; i++) {
 				// Set schema component
 				Interval integerSet = new Interval();
-				integerSet.setLeft(0);
-				integerSet.setRight(num_estaciones-1);
+				integerSet.setLeft(1);
+				integerSet.setRight(num_estaciones);
 				integerSet.setClosure(Closure.ClosedClosed);
 				genotypeSchema[i] = integerSet;
 				
