@@ -51,7 +51,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	public static int duracion[] = new int [m];
 
 	//matriz asociada a cada individuo A m*n
-	int A[][] = new int [m][n];	
+	//int A[][] = new int [m][n];	
 
 
 	//matriz de adyacencia
@@ -120,7 +120,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 			}
 			if (valorEstacion > fitness) {
 				fitness = valorEstacion;
-				System.out.println("el fitness es: " +fitness);
+				//System.out.println("el fitness es: " +fitness);
 			}
 		}
 
@@ -139,7 +139,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 			}
 
 		}
-		System.out.println("el orden es: " +orden);
+		//System.out.println("el orden es: " +orden);
 		//Si es 0 es que cumple el orden y se establece el valor de la estacion mas alta
 		if(orden==0) {
 			ind.setFitness(new SimpleValueFitness(fitness));
@@ -186,6 +186,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 	{
 		this.maximize = maximize;
 	}
+	
 	public Comparator<IFitness> getComparator()
 	{
 		// Set fitness comparator (if necessary)
@@ -234,7 +235,7 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 		        	//	System.out.println("NUMERO "+ Integer.valueOf(line.split(" ")[z]));
 		        	//	System.out.println("Agregamos: fila "+k+" columna :" +Integer.valueOf(line.split(" ")[z]));
 		        	//	m_adyacencia.agregar(k, Integer.valueOf(line.split(" ")[z]));
-		        		System.out.println("Agregamos: fila "+Integer.valueOf(line.split(" ")[z])+" columna :" + (k+1));
+		        		//System.out.println("Agregamos: fila "+Integer.valueOf(line.split(" ")[z])+" columna :" + (k+1));
 			        	m_adyacencia.agregar(Integer.valueOf(line.split(" ")[z])-1, k);
 		        		z++;
 		        	}
@@ -250,9 +251,9 @@ public class ASLB extends AbstractEvaluator implements IConfigure{
 			}
 		    
 		    for(int i=0;i<duracion.length;i++) {
-		    	System.out.println("duracion: "+duracion[i]);
+		    	//System.out.println("duracion: "+duracion[i]);
 		    }
-		    m_adyacencia.imprimir();
+		    //m_adyacencia.imprimir();
 		    
 		}
 	

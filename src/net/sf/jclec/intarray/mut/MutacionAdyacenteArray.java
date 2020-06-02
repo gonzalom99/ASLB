@@ -43,8 +43,8 @@ public class MutacionAdyacenteArray extends IntArrayMutator{
 				// Flip selected point
 				//Aqui escogemos una posicion aleatoria del genotype 
 				//Le añadimos o restamos uno para cambiarlo a una estacion adyacente
-				System.out.println("ESTAMOS EN MUTACION:");
-					System.out.println("EL VALOR MAX ES:"+ASLB.m);
+				//System.out.println("ESTAMOS EN MUTACION:");
+					//System.out.println("EL VALOR MAX ES:"+ASLB.m);
 				//si pertenece a la primera estacion le sumamos uno siempre
 				if(mgenome[mp]==1) {
 				mgenome[mp] ++;
@@ -63,7 +63,7 @@ public class MutacionAdyacenteArray extends IntArrayMutator{
 						else if(numero == 1) {
 							mgenome[mp] ++;
 						}
-						System.out.println("EL VALOR DEL NUMERO ALEATORIO ES:"+numero);
+						//System.out.println("EL VALOR DEL NUMERO ALEATORIO ES:"+numero);
 				}
 				flip(mgenome, mp);
 				// Returns mutant
